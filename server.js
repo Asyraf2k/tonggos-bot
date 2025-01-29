@@ -1,6 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const path = require('path');  // Tambahkan impor path
 
 const app = express();
 const PORT = 3000;
@@ -20,6 +21,12 @@ app.get('/api/players', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Gagal mengambil data pemain.' });
     }
+});
+
+// Menyajikan halaman utama (frontend)
+app.get('/', (req, res) => {
+    // Sesuaikan path untuk index.html yang ada di folder yang sama dengan server.js
+    res.sendFile(path.join(__dirname, 'index.html'));  
 });
 
 // Jalankan server
